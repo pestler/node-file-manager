@@ -1,8 +1,7 @@
 import path from 'path';
 import { readdir , copyFile} from 'fs/promises';
 
-export const copyDir = async (src, dest) => {
-    try {        
+export const copyDir = async (src, dest) => {           
         const dataFiles = await readdir(src, {
             withFileTypes: true,
         });        
@@ -12,8 +11,5 @@ export const copyDir = async (src, dest) => {
             data.isDirectory()
                 ? await copyDir(srcPath, destPath)
                 : await copyFile(srcPath, destPath);
-        }
-    } catch (error) {
-        throw error;
-    }
+        }    
 };

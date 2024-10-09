@@ -6,22 +6,17 @@ import { PropertyRequiredError } from '../util/validation-error.js'
 
 const filesDir = 'files';
 
-const remove = async () => {
+export const del = async () => {
     const sourceFile = path.resolve(getPathUrl(import.meta.url), filesDir, 'fileToRemove.txt');
     
-    try {
-        const sourceFileExist = existsSync(sourceFile);
+    const sourceFileExist = existsSync(sourceFile);    
         if (!sourceFileExist) {
             throw new PropertyRequiredError('FS operation failed');
         }
-
-        await rm(sourceFile);
-    } catch (error) {
-        throw error;
-    }
+        await rm(sourceFile);    
 }
 
 
-await remove();
+await del();
 
 
