@@ -7,8 +7,7 @@ const callbackError = (err) => {
     if (err) throw err;
 }
 
-export const add = async (dirname, filename) => {    
-    console.log(dirname, filename);
+export const add = async (dirname, filename) => {        
     const currentPath = path.resolve(dirname, filename);          
     stat(currentPath, (error) => {
         if (error == null) {

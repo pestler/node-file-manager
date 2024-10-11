@@ -5,24 +5,21 @@ export const switchAPI = async (dirname, params) => {
     let currentDir = dirname;
     switch (params[0]) {
 
-        case 'help':
-            console.log(params);
+        case 'help':            
             printHelp()
             break;
 
-        case 'add':
-            console.log(params, 'switch');
+            case 'ls':
+            await modulesApi.list(dirname);
+            break;
+
+        case 'add':            
             await modulesApi.add(dirname, params.slice(1).join(' '))
             break;
 
-        case 'hash':
-            console.log(params);
+        case 'hash':            
             await modulesApi.calculateHash(dirname, params.slice(1).join(' '));
             break;
-
-        /* case 'read':
-            modulesApi.read()            
-            break */
 
         default:
             console.log('\x1b[35mInvalid input\n\x1b[0m');
