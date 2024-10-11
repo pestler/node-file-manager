@@ -1,15 +1,15 @@
-import { createReadStream, createWriteStream } from 'fs';
+/* import { createReadStream, createWriteStream } from 'fs';
 import { pipeline } from 'stream';
 import path from 'path';
 import zlib from 'zlib';
-import {process} from 'node:process';
+import  process  from 'node:process';
 
 import { getPathUrl } from '../util/get-url-path.js'
 
-const filesDir = 'files';
+const filesDir = 'files'; */
 
 export const decompress = async () => {
-    const sourcePath = path.resolve(getPathUrl(import.meta.url), filesDir, 'archive.gz');
+   /*  const sourcePath = path.resolve(getPathUrl(import.meta.url), filesDir, 'archive.gz');
     const targetPath = path.resolve(getPathUrl(import.meta.url), filesDir, 'fileToCompress.txt');
     const readFile = createReadStream(sourcePath);
     const writeFile = createWriteStream(targetPath);
@@ -20,7 +20,7 @@ export const decompress = async () => {
         zlib.createGunzip(),
         writeFile,
         (error) => error && process.stderr.write(error)
-        );
+        ); */
 };
 
-await decompress();
+//await decompress();

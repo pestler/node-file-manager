@@ -1,4 +1,4 @@
-import path from 'path';
+/* import path from 'path';
 import { existsSync } from 'fs';
 import { getPathUrl } from '../util/get-url-path.js'
 import { PropertyRequiredError } from '../util/validation-error.js'
@@ -10,19 +10,19 @@ const target = 'files_copy';
 
 const sourcePath = path.resolve(getPathUrl(import.meta.url), source);
 const targetPath = path.resolve(getPathUrl(import.meta.url), target);
-
+ */
 export const copy = async () => {
-        const filesExistsSync = existsSync(sourcePath);
+    /*     const filesExistsSync = existsSync(sourcePath);
         const filesCopyExistsSync = existsSync(targetPath);
 
         if (!filesExistsSync || filesCopyExistsSync) {
             throw new PropertyRequiredError('FS operation failed');
         } else if (!filesCopyExistsSync) {
             createDirectory(targetPath)
-        }
+        } */
     }
-    copyDir(sourcePath, targetPath);
+    /* copyDir(sourcePath, targetPath); */
 
-await copy();
+//await copy();
 
 
