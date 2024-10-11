@@ -1,11 +1,7 @@
-/* import * as modulesApi from  './../commands/modules-api.js' */
-import { EOL } from 'os';
 import printHelp from '../lib/print-help.js';
 import * as functionApi from './modules-api.js'
 
-/* import { addFile } from './fs/add.js'; */
-
-export const switchAPI = (dirname, params) => {
+export const switchAPI = async (dirname, params) => {
     
     switch (params[0]) {
 
@@ -14,7 +10,8 @@ export const switchAPI = (dirname, params) => {
             break
 
             case 'add':
-        functionApi.add(dirname, params)        
+        await functionApi.add(dirname, params.slice(1).join(' '))        
+        
         
         break;
 
@@ -22,8 +19,8 @@ export const switchAPI = (dirname, params) => {
             modulesApi.read()            
             break */
     
-        default:        
-            console.log('2')
+        default:                    
+          console.log('\x1b[35mInvalid input\n\x1b[0m');                
         break
     }
 

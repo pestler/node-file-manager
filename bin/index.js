@@ -21,8 +21,8 @@ const startCLI = () => {
             rl.close();          
         } else {            
             const params = input.split(' ');            
-            dirname = switchAPI(dirname, params);             
-            process.stdout.write(`\n You are currently in ${dirname}\n`);          
+            dirname = await switchAPI(dirname, params);             
+            process.stdout.write(`\n You are currently in ${dirname} \n`);         
         }
     })                    
 };
