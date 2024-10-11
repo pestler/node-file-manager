@@ -1,16 +1,13 @@
-/* import path from 'path'
+import path from 'path'
 import { createReadStream } from 'fs';
-import { getPathUrl } from '../util/get-url-path.js';
-import  process  from 'node:process';
-const filesDir = 'files'; */
 
-export const readstream = async () => {
-/* const fileRead = path.resolve(getPathUrl(import.meta.url), filesDir, 'fileToRead.txt')
-const streamRead = createReadStream(fileRead)
-streamRead.pipe(process.stdout, { end: false });
-console.log(streamRead); */
+
+export const readstream = async (dirname, filename) => {
+    const currentPath = path.resolve(dirname, filename);
+    const streamRead = createReadStream(currentPath)    
+    streamRead.on('data', (chunk) => {
+/*         console.log(chunk.toString())         */
+        console.log(`\n\x1b[36mPrint file: \x1b[4m\x1b[33m${chunk.toString()}\n\x1b[0m`)
+    });
 };
-
-//await readstream();
-
 

@@ -1,4 +1,5 @@
 import { styleText } from 'node:util';
+import process from 'node:process';
 
 /**
  * Formats and returns a message based on the output destination.

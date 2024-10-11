@@ -3,6 +3,7 @@ import * as modulesApi from './modules-api.js'
 
 export const switchAPI = async (dirname, params) => {
     let currentDir = dirname;
+    const paramsOne = params.slice(1).join(' ')
     switch (params[0]) {
 
         case 'help':            
@@ -13,12 +14,16 @@ export const switchAPI = async (dirname, params) => {
             await modulesApi.list(dirname);
             break;
 
+            case 'cat':
+                await modulesApi.readstream(dirname, paramsOne)
+            break;
+
         case 'add':            
-            await modulesApi.add(dirname, params.slice(1).join(' '))
+            await modulesApi.add(dirname, paramsOne)
             break;
 
         case 'hash':            
-            await modulesApi.calculateHash(dirname, params.slice(1).join(' '));
+            await modulesApi.calculateHash(dirname, paramsOne);
             break;
 
         default:
