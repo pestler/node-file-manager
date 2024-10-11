@@ -1,20 +1,14 @@
-/* import path from 'path';
+import path from 'path';
 import fs from 'fs';
-import { getPathUrl } from './util/get-url-path.js';
 
 const {
     createHash
 } = await import('crypto');
 
 
-const filesDir = 'files'; */
-
-export const calculateHash = async () => {
-   /*  const filePath = path.resolve(getPathUrl(import.meta.url),filesDir, 'fileToCalculateHashFor.txt')
+export const calculateHash = async (dirname, filename) => {
+    const filePath = path.resolve(dirname, filename);
     const buffer = fs.readFileSync(filePath)
     const hash = createHash('sha256').update(buffer).digest('hex')
-    console.log(`SHA256 hash: ${hash}`);        */
+    console.log(`SHA256 hash: ${hash}`);
 };
-
-//await calculateHash();
-

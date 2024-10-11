@@ -5,12 +5,12 @@ import { switchAPI } from '../src/commands/switch-api.js';
 
 let username = 'user'
 
-const startCLI = () => {
+const startCLI = async () => {
     const input = process.stdin;
     const output = process.stdout;
     const rl = readline.createInterface({ input, output });
     
-    let dirname = os.homedir();
+    let dirname = os.homedir();    
     
     process.stdout.write(`Welcome to the File Manager, ${username}!\n`);
     process.stdout.write(`You are currently in ${dirname}\n`);
@@ -19,13 +19,13 @@ const startCLI = () => {
         if (input === '.exit') {
             process.stdout.write(`Thank you for using File Manager, ${username}!`);  
             rl.close();          
-        } else {            
+        } else {                        
             const params = input.split(' ');            
-            dirname = await switchAPI(dirname, params);             
-            process.stdout.write(`\n You are currently in ${dirname} \n`);         
+            dirname = await switchAPI(dirname, params);                         
+            process.stdout.write(`You are currently in ${dirname}\n`);                     
         }
     })                    
 };
 
-export default startCLI
+export default startCLI;
 

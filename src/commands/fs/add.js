@@ -1,13 +1,14 @@
+import path from 'path';
 import { stat, writeFile } from 'fs';
 import { PropertyRequiredError } from '../util/validation-error.js'
-import path from 'path';
 import { output } from '../../lib/output.js';
 
 const callbackError = (err) => {
     if (err) throw err;
 }
 
-export const add = async (dirname, filename) => {
+export const add = async (dirname, filename) => {    
+    console.log(dirname, filename);
     const currentPath = path.resolve(dirname, filename);          
     stat(currentPath, (error) => {
         if (error == null) {
@@ -16,11 +17,8 @@ export const add = async (dirname, filename) => {
             writeFile(currentPath, '', 'utf8', callbackError);
             console.log(
                 output('green',` file ${filename} was successfully created in ${dirname}\n`)
-                );
-            
-        } else {
-            throw error;
-        }
+                );            
+        } 
     })
 };
 
