@@ -10,11 +10,11 @@ import { writestream } from './fs/write-stream.js'
 import { compress } from './zip/compress.js'
 import { decompress } from './zip/decompress.js'
 import { calculateHash } from './calc-hash.js'
+import {systemInfo} from './os/os.js'
 
 
 export {
-    copy, add, del, list, readstream, read,
-    rename, writestream, compress, decompress, calculateHash
+    copy, add, del, list, readstream, read,  rename, writestream,
+    compress, decompress, calculateHash, systemInfo,
 }
 
-    

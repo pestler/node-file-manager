@@ -26,6 +26,10 @@ export const switchAPI = async (dirname, params) => {
             await modulesApi.calculateHash(dirname, paramsOne);
             break;
 
+            case 'os':            
+            await modulesApi.systemInfo( paramsOne);
+            break;
+
         default:
             console.log('\x1b[35mInvalid input\n\x1b[0m');
             break;

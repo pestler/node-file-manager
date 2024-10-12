@@ -11,7 +11,7 @@ export const list = async (dirname) => {
         }       
     const files = readdirSync(currentPath);        
     console.log(
-        output('green', `${files.join('\n')}` )
+        output('blue', `${files.join('\n')}` )
     )
 }
 
