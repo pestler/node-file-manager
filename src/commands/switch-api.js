@@ -30,6 +30,14 @@ export const switchAPI = async (dirname, params) => {
             await modulesApi.systemInfo( paramsOne);
             break;
 
+            case 'compress':            
+            await modulesApi.compress( dirname, paramsOne);
+            break;
+
+            case 'decompress':            
+            await modulesApi.compress( paramsOne);
+            break;
+
         default:
             console.log('\x1b[35mInvalid input\n\x1b[0m');
             break;

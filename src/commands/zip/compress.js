@@ -1,28 +1,26 @@
-/* import { createReadStream, createWriteStream } from 'fs';
-import { pipeline } from 'stream';
-import path from 'path';
-import zlib from 'zlib';
-import  process  from 'node:process';
-
-import { getPathUrl } from '../util/get-url-path.js'
-
-const filesDir = 'files'; */
-
-export const compress = async () => {
-
-    /* const sourcePath = path.resolve(getPathUrl(import.meta.url), filesDir, 'fileToCompress.txt');
-    const targetPath = path.resolve(getPathUrl(import.meta.url), filesDir, 'archive.gz');
-    const readFile = createReadStream(sourcePath);
-    const writeFile = createWriteStream(targetPath);
+import { createBrotliCompress } from 'zlib';
+import { createReadStream, createWriteStream } from 'fs';
+//import path from 'path';
 
 
-    pipeline(
-        readFile,
-        zlib.createGzip(),
-        writeFile,
-        (error) => error && process.stderr.write(error)
-        ); */
+export const compress = async (dirname, filename) => {
+    const pathAll = filename.split(' ');
+
+    const [inputPath, outputPath] = pathAll
+    /* console.log(typeof(pathToFile));
+    console.log(pathToDestination); */
+    
+    return await new Promise((resolve, reject) => {
+        const input = createReadStream(inputPath);
+        const output = createWriteStream(outputPath);
+        const brot = createBrotliCompress();
+
+        input.on('error', (error) => reject(error));
+
+        const stream = input.pipe(brot).pipe(output);
+        stream.on('finish', () => resolve('File compressed!'));
+        stream.on('error', (error) => reject(error));
+    });
 };
 
-//await compress();
 
