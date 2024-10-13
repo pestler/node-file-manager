@@ -1,7 +1,6 @@
 import path from 'path';
 import { createReadStream } from 'fs';
 import crypto from 'crypto';
-import { output } from '../lib/output.js';
 
 
 const getHashValue = path => new Promise((resolve, reject) => {
@@ -17,13 +16,9 @@ export const calculateHash = async (dirname, filename) => {
     (async () => {
         try {
             const hash = await getHashValue(filePath);
-            console.log(
-                output('green', hash)                
-            );
+            console.log(hash);
         } catch (error) {
-            console.error(
-                output('red','Operation failed', error)                
-            );
+            console.error('Operation failed', error);
         }
     })();
 };
