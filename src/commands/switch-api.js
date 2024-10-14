@@ -3,9 +3,7 @@ import * as modulesApi from './modules-api.js'
 import os from 'os';
 
 export const switchAPI = async (command, params) => {
-    console.log(command);
-    console.log(params);
-
+    
     const dirname = os.homedir();
 
     switch (command) {
@@ -27,9 +25,9 @@ export const switchAPI = async (command, params) => {
             break;
 
         case 'cp':
-            await modulesApi.copy(dirname, params)
+            await modulesApi.copy(dirname, params[0], params[1])
             break;
-
+        
         case 'hash':
             await modulesApi.calculateHash(dirname, params[0]);
             break;

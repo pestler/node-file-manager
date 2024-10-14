@@ -1,28 +1,33 @@
-/* import path from 'path';
-import { existsSync } from 'fs';
-import { getPathUrl } from '../util/get-url-path.js'
-import { PropertyRequiredError } from '../util/validation-error.js'
-import { createDirectory } from '../util/create-dir.js'
-import { copyDir } from '../util/copy-directory.js'
+import { resolve } from 'path';
+import {mkdir} from 'fs';
 import path from 'path';
-import { readdir , copyFile} from 'fs/promises';
+import { createReadStream, createWriteStream } from 'fs';
 
+export const copy = async (dirname, path_to_file, path_to_new_directory) => {
+    try {
+        const currentPath = resolve(dirname, path_to_file);
+        const failName = path.basename(currentPath)
+        mkdir(path_to_new_directory, { recursive: true }, async (err) => {
+            if (err) throw Error('Failed to create folder(s)');
+        });
+        const targetPath = resolve(path.join(path_to_new_directory, failName));
 
-const sourcePath = path.resolve(getPathUrl(import.meta.url), source);
-const targetPath = path.resolve(getPathUrl(import.meta.url), target); */
+        const readStream = createReadStream(currentPath);
+        const writeStream = createWriteStream(targetPath);
 
-export const copy = async () => {}
-        /* const filesExistsSync = existsSync(sourcePath);
-        const filesCopyExistsSync = existsSync(targetPath);
+        readStream.pipe(writeStream);
+        readStream.on('error', () => {
+            console.log('Operation failed');
+        });
 
-        if (!filesExistsSync || filesCopyExistsSync) {
-            throw new PropertyRequiredError('FS operation failed');
-        } else if (!filesCopyExistsSync) {
-            createDirectory(targetPath)
-        }
-        copyDir(sourcePath, targetPath);
+        writeStream.on('close', () => {
+            console.log('File copied successfully');
+        });
+    } catch (error) {
+        console.log('Operation failed');
     }
 
+}
 
 
- */
+//cp c:\users\aleh\text.txt c:\test
