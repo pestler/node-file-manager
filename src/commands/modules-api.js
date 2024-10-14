@@ -1,4 +1,5 @@
 import { copy } from './fs/copy.js'
+import { mv } from './fs/mv.js'
 import { add } from './fs/add.js'
 import { del } from './fs/delete.js'
 import { list } from './fs/list.js'
@@ -13,7 +14,7 @@ import {systemInfo} from './os/os.js'
 
 
 export {
-    copy, add, del, list, readstream, renameFile, writestream,
+    copy, mv, add, del, list, readstream, renameFile, writestream,
     compress, decompress, calculateHash, systemInfo,
 }
 

@@ -28,6 +28,10 @@ export const switchAPI = async (command, params) => {
             await modulesApi.copy(dirname, params[0], params[1])
             break;
 
+        case 'mv':
+            await modulesApi.mv(dirname, params[0], params[1])
+            break;
+
         case 'rn':
             await modulesApi.renameFile(dirname, params[0], params[1])
             break;
