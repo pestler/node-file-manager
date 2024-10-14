@@ -32,6 +32,10 @@ export const switchAPI = async (command, params) => {
             await modulesApi.mv(dirname, params[0], params[1])
             break;
 
+        case 'rm':
+            await modulesApi.deleteFile(dirname, params[0])
+            break;
+
         case 'rn':
             await modulesApi.renameFile(dirname, params[0], params[1])
             break;
