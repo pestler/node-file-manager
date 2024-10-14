@@ -27,6 +27,10 @@ export const switchAPI = async (command, params) => {
         case 'cp':
             await modulesApi.copy(dirname, params[0], params[1])
             break;
+
+        case 'rn':
+            await modulesApi.renameFile(dirname, params[0], params[1])
+            break;
         
         case 'hash':
             await modulesApi.calculateHash(dirname, params[0]);
