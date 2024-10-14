@@ -8,8 +8,8 @@ import { readstream } from './fs/read-stream.js'
 import { renameFile } from './fs/rename.js'
 import { writestream } from './fs/write-stream.js'
 
-import { compress } from './zip/compress.js'
-import { decompress } from './zip/decompress.js'
+import { compress } from './brotli/compress.js'
+import { decompress } from './brotli/decompress.js'
 import { calculateHash } from './calc-hash.js'
 import {systemInfo} from './os/os.js'
 

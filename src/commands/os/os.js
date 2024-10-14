@@ -2,10 +2,11 @@ import os from 'os';
 
 export const systemInfo = async (params) => {
     try {
-        if (params.trim().length < 1) throw Error('Invalid input');
-        const param = params.trim().replace('--', '')
+        if (params.length < 1) throw Error('Invalid input');
+        
+        const param = params.toString().replace('--', '')
         const CPUS = os.cpus()
-        const totalCpu = `Total number of CPUs: ${CPUS.length}`;
+        const totalCpu = `Total numbers of CPUs: ${CPUS.length}`;
         const infoCpu = []
         CPUS.forEach(
             (el, ind) => {

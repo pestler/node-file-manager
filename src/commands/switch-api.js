@@ -49,11 +49,11 @@ export const switchAPI = async (command, params) => {
             break;
 
         case 'compress':
-            await modulesApi.compress(dirname, params[0]);
+            await modulesApi.compress(dirname, params[0], params[1]);
             break;
 
         case 'decompress':
-            await modulesApi.compress(params[0]);
+            await modulesApi.decompress(dirname,params[0], params[1]);
             break;
 
         default:
