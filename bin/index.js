@@ -15,13 +15,13 @@ const startCLI = async () => {
     process.stdout.write(`Welcome to the File Manager, ${username}!\n`);
     process.stdout.write(`You are currently in ${dirname}\n`);
         
-    rl.on('line', async (input) => {        
+    rl.on('line', async (input) => {          
+        const [command, ...params] = input.toString().trim().split(' ');
         if (input === '.exit') {
             process.stdout.write(`Thank you for using File Manager, ${username}!`);  
             rl.close();          
-        } else {                        
-            const params = input.split(' ');            
-            dirname = await switchAPI(dirname, params);                         
+        } else {                                    
+            await switchAPI(command, params);                         
             process.stdout.write(`You are currently in ${dirname}\n`);                     
         }
     })                    

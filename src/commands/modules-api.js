@@ -3,7 +3,6 @@ import { add } from './fs/add.js'
 import { del } from './fs/delete.js'
 import { list } from './fs/list.js'
 import { readstream } from './fs/read-stream.js'
-import { read } from './fs/read.js'
 import { rename } from './fs/rename.js'
 import { writestream } from './fs/write-stream.js'
 
@@ -14,7 +13,7 @@ import {systemInfo} from './os/os.js'
 
 
 export {
-    copy, add, del, list, readstream, read,  rename, writestream,
+    copy, add, del, list, readstream, rename, writestream,
     compress, decompress, calculateHash, systemInfo,
 }
 

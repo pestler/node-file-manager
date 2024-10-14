@@ -1,22 +1,14 @@
-import path from 'path';
-import { stat, writeFile } from 'fs';
-import { PropertyRequiredError } from '../util/validation-error.js'
-
-const callbackError = (err) => {
-    if (err) throw err;
-}
+import {resolve} from 'path';
+import { writeFile } from 'fs';
 
 export const add = async (dirname, filename) => {        
-    const currentPath = path.resolve(dirname, filename);          
-    stat(currentPath, (error) => {
-        if (error == null) {
-            throw new PropertyRequiredError('FS operation failed');
-        } else if (error.code === 'ENOENT') {
-            writeFile(currentPath, '', 'utf8', callbackError);
-            console.log(
-                ` file ${filename} was successfully created in ${dirname}\n`
-                );            
-        } 
-    })
+    const currentPath = resolve(dirname, filename);          
+
+    writeFile(currentPath, '', function(error){
+        if(error){  
+            return console.log('Operation failed');
+        }
+        console.log( `file ${filename} was successfully created in ${dirname}\n`);        
+    });
 };
 

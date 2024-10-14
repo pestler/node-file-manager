@@ -1,48 +1,55 @@
 import printHelp from '../lib/print-help.js';
 import * as modulesApi from './modules-api.js'
+import os from 'os';
 
-export const switchAPI = async (dirname, params) => {
-    let currentDir = dirname;
-    const paramsOne = params.slice(1).join(' ')
-    switch (params[0]) {
+export const switchAPI = async (command, params) => {
+    console.log(command);
+    console.log(params);
 
-        case 'help':            
+    const dirname = os.homedir();
+
+    switch (command) {
+
+        case 'help':
             printHelp()
             break;
 
-            case 'ls':
+        case 'ls':
             await modulesApi.list(dirname);
             break;
 
-            case 'cat':
-                await modulesApi.readstream(dirname, paramsOne)
+        case 'cat':
+            await modulesApi.readstream(dirname, params[0])
             break;
 
-        case 'add':            
-            await modulesApi.add(dirname, paramsOne)
+        case 'add':
+            await modulesApi.add(dirname, params[0])
             break;
 
-        case 'hash':            
-            await modulesApi.calculateHash(dirname, paramsOne);
+        case 'cp':
+            await modulesApi.copy(dirname, params)
             break;
 
-            case 'os':            
-            await modulesApi.systemInfo( paramsOne);
+        case 'hash':
+            await modulesApi.calculateHash(dirname, params[0]);
             break;
 
-            case 'compress':            
-            await modulesApi.compress( dirname, paramsOne);
+        case 'os':
+            await modulesApi.systemInfo(params);
             break;
 
-            case 'decompress':            
-            await modulesApi.compress( paramsOne);
+        case 'compress':
+            await modulesApi.compress(dirname, params[0]);
+            break;
+
+        case 'decompress':
+            await modulesApi.compress(params[0]);
             break;
 
         default:
             console.log('\x1b[35mInvalid input\n\x1b[0m');
             break;
     }
-    return currentDir
 }
 
 
