@@ -4,7 +4,7 @@ import os from 'os';
 
 export const switchAPI = async (command, params) => {
     
-    const dirname = os.homedir();
+    let dirname = os.homedir();
 
     switch (command) {
 
