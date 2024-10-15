@@ -12,6 +12,16 @@ export const switchAPI = async (command, params) => {
             printHelp()
             break;
 
+            case 'up':
+                { const parentDir = modulesApi.up(dirname);
+                if (parentDir) dirname = parentDir;
+                break; }
+
+            case 'cd':
+                { const newDir = await modulesApi.changeDir(dirname, params[0]);
+                if (newDir) dirname = newDir;
+                break; }
+
         case 'ls':
             await modulesApi.list(dirname);
             break;

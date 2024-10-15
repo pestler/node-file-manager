@@ -1,3 +1,6 @@
+import up from './up.js'
+import { changeDir } from './change.js'
+
 import { copy } from './fs/copy.js'
 import { mv } from './fs/mv.js'
 import { deleteFile } from './fs/rm.js'
@@ -15,6 +18,6 @@ import {systemInfo} from './os/os.js'
 
 export {
     copy, mv, deleteFile, add, list, readstream, renameFile,
-    compress, decompress, calculateHash, systemInfo,
+    compress, decompress, calculateHash, systemInfo, up, changeDir
 }
 
