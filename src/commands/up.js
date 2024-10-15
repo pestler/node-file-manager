@@ -1,9 +1,9 @@
 import path from 'path';
+import process from 'node:process';
 
-export function  up (dirname){    
-    const parentDir = path.dirname(dirname);
-    if (parentDir !== dirname) {
-        return parentDir;
-    }
-}
+export function up() {
+    const upDirPath = path.resolve("..");
+    process.chdir(upDirPath);
 
+    return upDirPath;
+};
