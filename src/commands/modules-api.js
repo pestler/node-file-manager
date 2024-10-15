@@ -1,4 +1,4 @@
-import up from './up.js'
+import  {up } from './up.js'
 import { changeDir } from './change.js'
 
 import { copy } from './fs/copy.js'

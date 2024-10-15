@@ -4,8 +4,7 @@ import os from 'os';
 
 export const switchAPI = async (command, params) => {
     
-    let dirname = os.homedir();
-
+    let dirname = os.homedir();                       
     switch (command) {
 
         case 'help':
@@ -69,7 +68,8 @@ export const switchAPI = async (command, params) => {
         default:
             console.log('\x1b[35mInvalid input\n\x1b[0m');
             break;
-    }
+    } 
+    console.log(`You are currently in ${dirname}\n`);  
 }
 
 

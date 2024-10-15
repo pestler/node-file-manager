@@ -1,5 +1,4 @@
 import process from 'node:process';
-import os from 'os';
 import readline from 'readline';
 import { switchAPI } from '../src/commands/switch-api.js';
 
@@ -10,10 +9,7 @@ const startCLI = async () => {
     const output = process.stdout;
     const rl = readline.createInterface({ input, output });
     
-    let dirname = os.homedir();    
-    
-    process.stdout.write(`Welcome to the File Manager, ${username}!\n`);
-    process.stdout.write(`You are currently in ${dirname}\n`);
+    process.stdout.write(`Welcome to the File Manager, ${username}!\n`);    
         
     rl.on('line', async (input) => {          
         const [command, ...params] = input.toString().trim().split(' ');
@@ -21,8 +17,7 @@ const startCLI = async () => {
             process.stdout.write(`Thank you for using File Manager, ${username}!`);  
             rl.close();          
         } else {                                    
-            await switchAPI(command, params);                         
-            process.stdout.write(`You are currently in ${dirname}\n`);                     
+            await switchAPI(command, params);            
         }
     })                    
 };

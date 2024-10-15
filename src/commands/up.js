@@ -1,8 +1,9 @@
 import path from 'path';
 
-export const  up = (currentDirname)=>{
-    const parentDir = path.dirname(currentDirname);
-    if (parentDir !== currentDirname) {
+export function  up (dirname){    
+    const parentDir = path.dirname(dirname);
+    if (parentDir !== dirname) {
         return parentDir;
     }
 }
+
