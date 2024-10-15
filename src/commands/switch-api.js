@@ -13,7 +13,7 @@ export const switchAPI = async (command, params) => {
             break;
 
             case 'up':
-                dirname = modulesApi.up();                
+                dirname = modulesApi.up(dirname);                
                 break; 
 
             case 'cd':
