@@ -2,9 +2,10 @@ import printHelp from '../lib/print-help.js';
 import * as modulesApi from './modules-api.js'
 import os from 'os';
 
+export let dirname = os.homedir();                       
+
 export const switchAPI = async (command, params) => {
     
-    let dirname = os.homedir();                       
     switch (command) {
 
         case 'help':
@@ -17,9 +18,8 @@ export const switchAPI = async (command, params) => {
                 break; }
 
             case 'cd':
-                { const newDir = await modulesApi.changeDir(dirname, params[0]);
-                if (newDir) dirname = newDir;
-                break; }
+                dirname = modulesApi.changeDir(...params); 
+                break; 
 
         case 'ls':
             await modulesApi.list(dirname);
