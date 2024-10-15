@@ -2,11 +2,10 @@ import { copy } from './fs/copy.js'
 import { mv } from './fs/mv.js'
 import { deleteFile } from './fs/rm.js'
 import { add } from './fs/add.js'
-import { del } from './fs/delete.js'
 import { list } from './fs/list.js'
 import { readstream } from './fs/read-stream.js'
 import { renameFile } from './fs/rename.js'
-import { writestream } from './fs/write-stream.js'
+
 
 import { compress } from './brotli/compress.js'
 import { decompress } from './brotli/decompress.js'
@@ -15,7 +14,7 @@ import {systemInfo} from './os/os.js'
 
 
 export {
-    copy, mv, deleteFile, add, del, list, readstream, renameFile, writestream,
+    copy, mv, deleteFile, add, list, readstream, renameFile,
     compress, decompress, calculateHash, systemInfo,
 }
 

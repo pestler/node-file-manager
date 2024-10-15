@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { join, resolve } from 'path';
 import {mkdir} from 'fs';
 import path from 'path';
 import { createReadStream, createWriteStream } from 'fs';
@@ -15,10 +15,13 @@ export const compress = async (dirname, path_to_file, path_to_new_directory) => 
         mkdir(path_to_new_directory, { recursive: true }, async (err) => {
             if (err) throw Error('Failed to create folder(s)');
         });
-        const targetPath = resolve(path.join(path_to_new_directory, failName));
+        //const targetPath = resolve(path.join(path_to_new_directory, failName));
+
+        const targetPath = resolve(dirname, (path_to_new_directory))
+        const targetPathFile = join(targetPath, failName)
 
         const readStream = createReadStream(currentPath);
-        const writeStream = createWriteStream(targetPath);
+        const writeStream = createWriteStream(targetPathFile);
 
         readStream.pipe(brotli).pipe(writeStream);
         readStream.on('error', () => {
@@ -29,7 +32,7 @@ export const compress = async (dirname, path_to_file, path_to_new_directory) => 
             console.log('File compress');
         });
     } catch (error) {
-        console.log('Operation failed');
+        console.log('Operation failed', error);
     }
 };
 
