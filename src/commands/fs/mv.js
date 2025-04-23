@@ -1,46 +1,33 @@
-import { join,resolve } from 'path';
-import { mkdir, rm } from 'fs';
-import path from 'path';
-import { createReadStream, createWriteStream } from 'fs';
-
+import { join, resolve, basename } from 'path';
+import { promises as fsPromises, createReadStream, createWriteStream } from 'fs';
+import { once } from 'events';
 
 export const mv = async (dirname, path_to_file, path_to_new_directory) => {
     try {
         const currentPath = resolve(dirname, path_to_file);
-        const failName = path.basename(currentPath)
-        mkdir(path_to_new_directory, { recursive: true }, async (err) => {
-            if (err) throw Error('Failed to create folder(s)');
+        const failName = basename(currentPath);
+        const targetPath = resolve(dirname, path_to_new_directory);
+        const targetPathFile = join(targetPath, failName);
+
+        await fsPromises.mkdir(targetPath, { recursive: true });
+
+        await fsPromises.access(currentPath).catch(() => {
+            throw new Error('Source file not found');
         });
-
-
-        const targetPath = resolve(dirname, (path_to_new_directory))
-        const targetPathFile = join(targetPath, failName)
-
 
         const readStream = createReadStream(currentPath);
         const writeStream = createWriteStream(targetPathFile);
 
+
         readStream.pipe(writeStream);
-        readStream.on('error', () => {
-            console.log('Operation failed');
-        });
 
-        writeStream.on('close', () => {
-            console.log('');
-        });
+        await once(writeStream, 'close');
 
-        rm(currentPath, { recursive: true }, (err) => {
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            console.log("File moved");
-        })
+        await fsPromises.rm(currentPath);
 
+        console.log(`File "${failName}" was successfully moved to "${targetPath}"`);
     } catch (error) {
-        console.log('Operation failed', error);
+        console.error('Operation failed:', error.message);
+        throw error;
     }
-}
-
-
-
+};

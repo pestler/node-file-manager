@@ -1,17 +1,34 @@
 import path from 'path';
-import { existsSync, readdirSync } from 'fs';
-import { PropertyRequiredError } from '../util/validation-error.js'
+import { promises as fsPromises } from 'fs';
 
-export const list = async (dirname) => {
-    const currentPath = path.resolve(dirname);
-    const filesExistsSync = existsSync(currentPath);
-    if (!filesExistsSync) {
-        throw new PropertyRequiredError('FS operation failed');
+export class ValidationErrorStandart extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "ValidationError";
     }
-    const files = readdirSync(currentPath);
-    console.log(
-        `${files.join('\n')}`
-    )
 }
 
+export class PropertyRequiredError extends ValidationErrorStandart {
+    constructor(property) {
+        super(`Missing required property: ${property}`);
+        this.name = "PropertyRequiredError";
+        this.property = property;
+    }
+}
 
+export const list = async (dirname) => {
+    try {
+        const currentPath = path.resolve(dirname);
+
+        await fsPromises.access(currentPath).catch(() => {
+            throw new PropertyRequiredError('FS operation failed: Directory does not exist');
+        });
+
+        const files = await fsPromises.readdir(currentPath);
+
+        console.log(files.join('\n'));
+    } catch (error) {
+        console.error('Operation failed:', error.message);
+        throw error;
+    }
+};

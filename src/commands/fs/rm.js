@@ -1,17 +1,15 @@
-import {resolve} from 'path';
-import { rm } from 'fs';
-
+import { resolve } from 'path';
+import { promises as fsPromises } from 'fs';
 
 export const deleteFile = async (dirname, filename) => {
-    const currentPath = resolve(dirname, filename);
+    try {
+        const currentPath = resolve(dirname, filename);
 
-    rm(currentPath, { recursive: true }, (err) => {
-        if (err) {
-            console.error(err.message);
-            return;
-        }
-        console.log("File delete");
-    })
+        await fsPromises.rm(currentPath, { recursive: true });
+
+        console.log(`File "${filename}" has been deleted successfully`);
+    } catch (error) {
+        console.error('Operation failed:', error.message);
+        throw error;
+    }
 };
-
-
