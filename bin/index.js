@@ -3,7 +3,10 @@ import readline from 'readline';
 import { switchAPI } from '../src/commands/switch-api.js';
 import os from 'os';
 
-let username = process.argv.find(arg => arg.startsWith('--username='))?.split('=')[1] || 'user';
+
+let username = process.argv.find(arg => arg.startsWith('--username='))?.split('=')[1]
+    || (process.argv.includes('--username') ? process.argv[process.argv.indexOf('--username') + 1] : 'user');
+
 
 export let dirname = os.homedir();
 
