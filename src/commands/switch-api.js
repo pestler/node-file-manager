@@ -26,10 +26,14 @@ export const switchAPI = async (command, params = []) => {
             case 'cat':
                 await modulesApi.readstream(dirname, params[0]);
                 break;
+            case 'mkdir':
+                await modulesApi.mkdir(dirname, params[0]);
+                break;
 
             case 'add':
                 await modulesApi.add(dirname, params[0]);
                 break;
+
 
             case 'cp':
                 await modulesApi.copy(dirname, params[0], params[1]);

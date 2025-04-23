@@ -20,6 +20,10 @@ const commands = [
         info: 'Read file and print content',
     },
     {
+        command: 'mkdir new_directory_name',
+        info: 'Create new directory in current working directory',
+    },
+    {
         command: 'add new_file_name',
         info: 'Create empty file in current working directory',
     },
