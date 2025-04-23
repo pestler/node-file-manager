@@ -1,9 +1,9 @@
 import {resolve} from 'path';
 import { rm } from 'fs';
-//rm path_to_file
 
-export const deleteFile = async (dirname, filename) => {        
-    const currentPath = resolve(dirname, filename);          
+
+export const deleteFile = async (dirname, filename) => {
+    const currentPath = resolve(dirname, filename);
 
     rm(currentPath, { recursive: true }, (err) => {
         if (err) {
@@ -14,4 +14,4 @@ export const deleteFile = async (dirname, filename) => {
     })
 };
 
-//rm c:\users\aleh\text.txt 
+

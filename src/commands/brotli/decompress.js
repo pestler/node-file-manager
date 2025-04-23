@@ -4,7 +4,7 @@ import path from 'path';
 import { createReadStream, createWriteStream } from 'fs';
 import zlib from 'zlib';
 
-//decompress path_to_file path_to_destination
+
 
 export const decompress = async (dirname, path_to_file, path_to_new_directory) => {
     const brotli = zlib.createBrotliDecompress();
@@ -15,7 +15,7 @@ export const decompress = async (dirname, path_to_file, path_to_new_directory) =
             if (err) throw Error('Failed to create folder(s)');
         });
 
-        //const targetPath = resolve(path.join(path_to_new_directory, failName));
+
 
         const targetPath = resolve(dirname, (path_to_new_directory))
         const targetPathFile = join(targetPath, failName)
@@ -37,4 +37,4 @@ export const decompress = async (dirname, path_to_file, path_to_new_directory) =
 };
 
 
-//decompress c:\test\text.txt.gz c:\users\aleh\
+

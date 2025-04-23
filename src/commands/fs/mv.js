@@ -2,7 +2,7 @@ import { join,resolve } from 'path';
 import { mkdir, rm } from 'fs';
 import path from 'path';
 import { createReadStream, createWriteStream } from 'fs';
-//mv path_to_file path_to_new_directory
+
 
 export const mv = async (dirname, path_to_file, path_to_new_directory) => {
     try {
@@ -11,11 +11,11 @@ export const mv = async (dirname, path_to_file, path_to_new_directory) => {
         mkdir(path_to_new_directory, { recursive: true }, async (err) => {
             if (err) throw Error('Failed to create folder(s)');
         });
-        //const targetPath = resolve(path.join(path_to_new_directory, failName));
+
 
         const targetPath = resolve(dirname, (path_to_new_directory))
         const targetPathFile = join(targetPath, failName)
-        
+
 
         const readStream = createReadStream(currentPath);
         const writeStream = createWriteStream(targetPathFile);
@@ -43,4 +43,4 @@ export const mv = async (dirname, path_to_file, path_to_new_directory) => {
 }
 
 
-//mv c:\users\aleh\text.txt c:\test
+

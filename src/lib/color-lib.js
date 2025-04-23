@@ -1,8 +1,8 @@
-const color = {    
+const color = {
     reset: '\x1b[0m',
     bright: '\x1b[1m',
-    dim: '\x1b[2m',     // bold
-    italic: '\x1b[3m',  // non-standard feature
+    dim: '\x1b[2m',
+    italic: '\x1b[3m', 
     underscore: '\x1b[4m',
     blink: '\x1b[5m',
     reverse: '\x1b[7m',
