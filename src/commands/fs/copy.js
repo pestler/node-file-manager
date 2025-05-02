@@ -17,20 +17,19 @@ export const copy = async (dirname, path_to_file, path_to_new_directory) => {
         try {
             await fsPromises.access(currentPath);
         } catch {
-            throw new Error(`Source file not found: ${currentPath}`);
+            throw new Error(`Operation failed. Source file not found: ${currentPath}`);
         }
 
 
         try {
             await fsPromises.access(targetPath);
         } catch {
-            console.log(`Target directory "${targetPath}" does not exist. Creating...`);
-            await fsPromises.mkdir(targetPath, { recursive: true });
+            console.log(`Operation failed. Target directory "${targetPath}" does not exist.`);
         }
 
         try {
             await fsPromises.access(targetPathFile);
-            throw new Error(`File "${fileName}" already exists in "${targetPath}"`);
+            throw new Error(`Operation failed. File "${fileName}" already exists in "${targetPath}"`);
         } catch (error) {
             if (error.code !== 'ENOENT') throw error;
         }
@@ -43,7 +42,7 @@ export const copy = async (dirname, path_to_file, path_to_new_directory) => {
             console.log(`File "${fileName}" successfully copied to "${targetPath}"`);
         } catch (error) {
             if (error.code === 'EPERM') {
-                console.error(`Permission denied: Cannot copy to "${targetPath}". Try running the script as Administrator.`);
+                console.error(`Operation failed. Permission denied: Cannot copy to "${targetPath}". Try running the script as Administrator.`);
                 return;
             }
             throw error;

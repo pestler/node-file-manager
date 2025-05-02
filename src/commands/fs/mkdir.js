@@ -7,6 +7,6 @@ export const mkdir = async (currentDir, dirName) => {
         await fs.mkdir(fullPath, { recursive: true });
         console.log(`Directory "${dirName}" created successfully at: ${fullPath}`);
     } catch (error) {
-        console.error(`Failed to create directory: ${error.message}`);
+        console.error(`Operation failed. Failed to create directory: ${error.message}`);
     }
 };

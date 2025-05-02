@@ -68,7 +68,7 @@ export const switchAPI = async (command, params = []) => {
                 break;
 
             default:
-                console.log('\x1b[31mInvalid command. Type "help" to see a list of available commands.\n\x1b[0m');
+                console.log('\x1b[31mInvalid input. Type "help" to see a list of available commands.\n\x1b[0m');
                 break;
         }
         console.log(`You are currently in: ${dirname}\n`);
