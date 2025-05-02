@@ -32,20 +32,19 @@ export const list = async (dirname) => {
             try {
                 const stats = await fsPromises.stat(filePath);
                 if (stats.isDirectory()) {
-                    directories.push(file);
+                    directories.push({ Name: file, Type: 'Directory' });
                 } else {
-                    regularFiles.push(file);
+                    regularFiles.push({ Name: file, Type: 'File' });
                 }
             } catch (error) {
                 console.warn(`Skipping inaccessible file: ${file}`);
             }
         }
 
-        console.log(directories.join('\n'));
-        console.log(regularFiles.join('\n'));
+        console.table([...directories, ...regularFiles]);
+
     } catch (error) {
         console.error('Operation failed:', error.message);
         throw error;
     }
 };
-
