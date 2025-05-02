@@ -7,8 +7,8 @@ import os from 'os';
 let username = process.argv.find(arg => arg.startsWith('--username='))?.split('=')[1]
     || (process.argv.includes('--username') ? process.argv[process.argv.indexOf('--username') + 1] : 'user');
 
+export let dirname = os.homedir() || process.cwd();
 
-export let dirname = os.homedir();
 
 const startCLI = async () => {
     const input = process.stdin;
