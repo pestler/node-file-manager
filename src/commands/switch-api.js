@@ -40,7 +40,7 @@ export const switchAPI = async (command, params = []) => {
                 break;
 
             case 'mv':
-                await modulesApi.mv(dirname, params[0], params[1]);
+                await modulesApi.move(dirname, params[0], params[1]);
                 break;
 
             case 'rm':

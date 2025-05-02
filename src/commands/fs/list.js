@@ -1,21 +1,6 @@
 import path from 'path';
 import { promises as fsPromises } from 'fs';
 
-export class ValidationErrorStandart extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'ValidationError';
-    }
-}
-
-export class PropertyRequiredError extends ValidationErrorStandart {
-    constructor(property) {
-        super(`Missing required property: ${property}`);
-        this.name = 'PropertyRequiredError';
-        this.property = property;
-    }
-}
-
 export const list = async (dirname) => {
     try {
         const currentPath = path.resolve(dirname);

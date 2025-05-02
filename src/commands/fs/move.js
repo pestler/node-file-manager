@@ -1,12 +1,9 @@
 import { join, resolve, basename } from 'path';
-import { promises as fsPromises, createReadStream, createWriteStream } from 'fs';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
+import { promises as fsPromises } from 'fs';
 
-const asyncPipeline = promisify(pipeline);
 const sanitizePath = (pathString) => pathString.replace(/\\$/, '');
 
-export const copy = async (dirname, path_to_file, path_to_new_directory) => {
+export const move = async (dirname, path_to_file, path_to_new_directory) => {
     try {
         dirname = sanitizePath(dirname);
         const currentPath = resolve(dirname, path_to_file);
@@ -19,7 +16,6 @@ export const copy = async (dirname, path_to_file, path_to_new_directory) => {
         } catch {
             throw new Error(`Source file not found: ${currentPath}`);
         }
-
 
         try {
             await fsPromises.access(targetPath);
@@ -35,15 +31,12 @@ export const copy = async (dirname, path_to_file, path_to_new_directory) => {
             if (error.code !== 'ENOENT') throw error;
         }
 
-        const readStream = createReadStream(currentPath);
-        const writeStream = createWriteStream(targetPathFile);
-
         try {
-            await asyncPipeline(readStream, writeStream);
-            console.log(`File "${fileName}" successfully copied to "${targetPath}"`);
+            await fsPromises.rename(currentPath, targetPathFile);
+            console.log(`File "${fileName}" successfully moved to "${targetPath}"`);
         } catch (error) {
             if (error.code === 'EPERM') {
-                console.error(`Permission denied: Cannot copy to "${targetPath}". Try running the script as Administrator.`);
+                console.error(`Permission denied: Cannot move to "${targetPath}". Try running the script as Administrator.`);
                 return;
             }
             throw error;
