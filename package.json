@@ -1,0 +1,16 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "node-file manager",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": ["nodejs", "assignments"],
+  "author": "Pestler",
+  "license": "ISC"
+}
