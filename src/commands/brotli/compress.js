@@ -5,15 +5,15 @@ import zlib from 'zlib';
 
 export const compress = async (dirname, path_to_file, path_to_new_directory) => {
     if (!dirname) {
-        console.error('Error: "dirname" is required.');
+        console.error('Invalid input. Error: "dirname" is required.');
         return;
     }
     if (!path_to_file) {
-        console.error('Error: "path_to_file" is required.');
+        console.error('Invalid input. Error: "path_to_file" is required.');
         return;
     }
     if (!path_to_new_directory) {
-        console.error('Error: "path_to_new_directory" is required.');
+        console.error('Invalid input. Error: "path_to_new_directory" is required.');
         return;
     }
 
@@ -32,7 +32,7 @@ export const compress = async (dirname, path_to_file, path_to_new_directory) => 
         try {
             await fsPromises.access(currentPath);
         } catch {
-            throw new Error(`Source file not found: ${currentPath}`);
+            throw new Error(`Operation failed. Source file not found: ${currentPath}`);
         }
 
         const readStream = createReadStream(currentPath);
@@ -41,7 +41,7 @@ export const compress = async (dirname, path_to_file, path_to_new_directory) => 
         readStream.pipe(brotli).pipe(writeStream);
 
         readStream.on('error', (err) => {
-            console.error('Read error:', err.message);
+            console.error('Operation failed. Read error:', err.message);
         });
 
         writeStream.on('close', () => {
