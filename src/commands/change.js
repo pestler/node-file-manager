@@ -5,7 +5,7 @@ import path from 'path';
 export async function changeDir(dirName) {
     try {
         if (!dirName || typeof dirName !== 'string') {
-            throw new Error('Invalid directory name provided.');
+            throw new Error('Invalid input, directory name provided.');
         }
 
         if (/^[a-zA-Z]:$/.test(dirName)) {
