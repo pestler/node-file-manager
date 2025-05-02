@@ -30,6 +30,7 @@ const startCLI = async () => {
         if (command === '.exit') {
             console.log(`Thank you for using File Manager, ${username}!`);
             rl.close();
+            process.exit(0);
         } else {
             try {
                 await switchAPI(command, params);
